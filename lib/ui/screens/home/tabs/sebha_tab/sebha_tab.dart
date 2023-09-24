@@ -10,9 +10,20 @@ class SebhaTab extends StatefulWidget {
 }
 
 class _SebhaTabState extends State<SebhaTab> {
+  int counter = 0;
+  int newCounter = 0;
+  double Angle =0;
+
   @override
   Widget build(BuildContext context) {
     SettingProvider provider = Provider.of(context);
+    List<String> azkar = [
+      "سبحان الله",
+      "الحمد الله",
+      "الله اكبر",
+      "لا اله الا الله",
+    ];
+
     return Center(
       child: Column(
         children: [
@@ -20,20 +31,29 @@ class _SebhaTabState extends State<SebhaTab> {
               ? AppAssets.sebhaHead
               : AppAssets.sebhaHeadDark),
           Transform.rotate(
-            angle: 2,
+            angle: Angle,
             child: Container(
               width: 250,
-              height: 250,child: (IconButton(onPressed: (){
-                for (int i=0;i<3;i++){
-                  for (int j = 0; j < 33; j++) {
-
+              height: 250,
+              child: (IconButton(
+                onPressed: () {
+                  if (counter == 33) {
+                    if (newCounter == 3) {
+                      newCounter = 0;
+                    } else {
+                      newCounter++;
+                    }
+                    counter = 0;
+                  } else {
+                    counter++;
+                    Angle++;
                   }
-
-                }
-            },
+                  setState(() {});
+                },
                 icon: Image.asset(provider.currentTheme == ThemeMode.light
                     ? AppAssets.sebha
-                    : AppAssets.sebhaDark), )),
+                    : AppAssets.sebhaDark),
+              )),
             ),
           ),
           Padding(
@@ -52,7 +72,8 @@ class _SebhaTabState extends State<SebhaTab> {
                     ? AppColors.primiary
                     : AppColors.primiaryDark),
             child: Center(
-              child: Text('33', style: Theme.of(context).textTheme.titleLarge),
+              child: Text("$counter",
+                  style: Theme.of(context).textTheme.titleLarge),
             ),
           ),
           // comment
@@ -68,7 +89,7 @@ class _SebhaTabState extends State<SebhaTab> {
                       ? AppColors.primiary
                       : AppColors.accentDark),
               child: Center(
-                child: Text('سبحان الله',
+                child: Text(azkar[newCounter],
                     style: Theme.of(context).textTheme.titleLarge),
               ),
             ),
