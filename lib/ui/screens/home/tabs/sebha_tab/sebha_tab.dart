@@ -12,7 +12,7 @@ class SebhaTab extends StatefulWidget {
 class _SebhaTabState extends State<SebhaTab> {
   int counter = 0;
   int newCounter = 0;
-  double Angle =0;
+  double Angle = 0;
 
   @override
   Widget build(BuildContext context) {
@@ -27,35 +27,50 @@ class _SebhaTabState extends State<SebhaTab> {
     return Center(
       child: Column(
         children: [
-          Image.asset(provider.currentTheme == ThemeMode.light
-              ? AppAssets.sebhaHead
-              : AppAssets.sebhaHeadDark),
-          Transform.rotate(
-            angle: Angle,
-            child: Container(
-              width: 250,
-              height: 250,
-              child: (IconButton(
-                onPressed: () {
-                  if (counter == 33) {
-                    if (newCounter == 3) {
-                      newCounter = 0;
-                    } else {
-                      newCounter++;
-                    }
-                    counter = 0;
-                  } else {
-                    counter++;
-                    Angle++;
-                  }
-                  setState(() {});
-                },
-                icon: Image.asset(provider.currentTheme == ThemeMode.light
-                    ? AppAssets.sebha
-                    : AppAssets.sebhaDark),
-              )),
+          Stack(children: [
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Image.asset(provider.currentTheme == ThemeMode.light
+                    ? AppAssets.sebhaHead
+                    : AppAssets.sebhaHeadDark),
+              ],
             ),
-          ),
+            Padding(
+              padding: const EdgeInsets.only(top: 70),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+              Transform.rotate(
+                angle: Angle,
+                child: SizedBox(
+                  width: 250,
+                  height: 250,
+                  child: (IconButton(
+                    onPressed: () {
+                      if (counter == 33) {
+                        if (newCounter == 3) {
+                          newCounter = 0;
+                        } else {
+                          newCounter++;
+                        }
+                        counter = 0;
+                      } else {
+                        counter++;
+                        Angle++;
+                      }
+                      setState(() {});
+                    },
+                    icon: Image.asset(provider.currentTheme == ThemeMode.light
+                        ? AppAssets.sebha
+                        : AppAssets.sebhaDark),
+                  )),
+                ),
+              ),
+              ],),
+            )
+          ]),
+
           Padding(
             padding: const EdgeInsets.all(30),
             child: Text(

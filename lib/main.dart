@@ -34,6 +34,7 @@ class MyApp extends StatelessWidget {
       ],
       locale: Locale(provider.currentLocal),
       debugShowCheckedModeBanner: false,
+
       routes: {
         HomeScreen.routName: (_) => HomeScreen(),
         DetailsScreen.routeName: (_) => DetailsScreen(),
