@@ -16,17 +16,24 @@ class _SebhaTabState extends State<SebhaTab> {
     return Center(
       child: Column(
         children: [
-          Image.asset(AppAssets.sebhaHead),
+          Image.asset(provider.currentTheme == ThemeMode.light
+              ? AppAssets.sebhaHead
+              : AppAssets.sebhaHeadDark),
           Transform.rotate(
             angle: 2,
             child: Container(
               width: 250,
-              height: 250,
-              decoration: const BoxDecoration(
-                image: DecorationImage(
-                  image: AssetImage(AppAssets.sebha),
-                ),
-              ),
+              height: 250,child: (IconButton(onPressed: (){
+                for (int i=0;i<3;i++){
+                  for (int j = 0; j < 33; j++) {
+
+                  }
+
+                }
+            },
+                icon: Image.asset(provider.currentTheme == ThemeMode.light
+                    ? AppAssets.sebha
+                    : AppAssets.sebhaDark), )),
             ),
           ),
           Padding(
@@ -40,9 +47,10 @@ class _SebhaTabState extends State<SebhaTab> {
             width: 70,
             height: 60,
             decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(20),color: provider.currentTheme==ThemeMode.light
-                ? AppColors.primiary
-                : AppColors.primiaryDark),
+                borderRadius: BorderRadius.circular(20),
+                color: provider.currentTheme == ThemeMode.light
+                    ? AppColors.primiary
+                    : AppColors.primiaryDark),
             child: Center(
               child: Text('33', style: Theme.of(context).textTheme.titleLarge),
             ),
@@ -52,18 +60,19 @@ class _SebhaTabState extends State<SebhaTab> {
           Padding(
             padding: const EdgeInsets.only(top: 20),
             child: Container(
-              width: 140 ,
+              width: 140,
               height: 60,
               decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(30), color: provider.currentTheme==ThemeMode.light
-                  ? AppColors.primiary
-                  : AppColors.accentDark),
+                  borderRadius: BorderRadius.circular(30),
+                  color: provider.currentTheme == ThemeMode.light
+                      ? AppColors.primiary
+                      : AppColors.accentDark),
               child: Center(
-                child: Text('سبحان الله', style: Theme.of(context).textTheme.titleLarge),
+                child: Text('سبحان الله',
+                    style: Theme.of(context).textTheme.titleLarge),
               ),
             ),
           ),
-
         ],
       ),
     );
